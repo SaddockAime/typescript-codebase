@@ -1,5 +1,6 @@
 
-//prime numbers
+//A.	Basic
+//1.  prime numbers
 const primeNum = (arr: number[]): number[] => {
     const primeArr: number[] = [];
     for (let i: number = 0; i < arr.length; i++) {
@@ -25,18 +26,18 @@ console.log(primeNum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
 
 
 
-//****************************Palindrome************************************************
+//2.  Palindrome
 const palindrome = (text: string): boolean => {
     const cleantext = text.replace(/[^a-z0-9]/g, '').toLowerCase();
     return cleantext === cleantext.split('').reverse().join('');
 }
 
-console.log(palindrome("racecar"));
-console.log(palindrome("hello"));
+//console.log(palindrome("racecar"));
+//console.log(palindrome("hello"));
 
 
 
-// **********************reverse array**************************
+//3.   reverse array
 const reverseArr = (arr: number[]): number[] => {
     const reverseArray: number[] = [];
 
@@ -47,11 +48,61 @@ const reverseArr = (arr: number[]): number[] => {
     return reverseArray;
 }
 
-console.log(reverseArr([1,2,3,4,5,6,7,8,9,10]));
+//console.log(reverseArr([1,2,3,4,5,6,7,8,9,10]));
 
 
 
-//custom sorting
+
+//5.	Array & Object
+type PersonInfo = {
+    secondName: string;
+    age: number;
+};
+
+interface GenderInfo {
+    females: Record<string, PersonInfo>;
+    males: Record<string, PersonInfo>;
+};
+
+const processIdentities = (identities: string[]): GenderInfo => {
+    let details: GenderInfo = { females: {}, males: {} };
+
+    identities.forEach(identity => {
+        let [fullName, ageString, gender] = identity.split(',').map(item => item.trim());
+        let [firstName, secondName] = fullName.split(' ');
+        let age = parseInt(ageString);
+        let person: PersonInfo = {secondName, age};
+
+        if (gender === 'female') {
+            details.females[firstName] = person;
+        } else if (gender === 'male') {
+            details.males[firstName] = person;
+        }
+    });
+
+    return details;
+};
+
+// Example
+const identities = [
+    "Patrick wyne, 30, male",
+    "lil wyne, 32, male",
+    "Eric mimi, 21, female",
+    "Dodos deck, 21, male",
+    "Alian Dwine, 22, male",
+    "Patrick wyne, 33, male",
+    "Patrick wyne, 10, male",
+    "Patrick wyne, 40, male"
+];
+
+const result = processIdentities(identities);
+//console.log(result);
+
+
+
+
+
+//B.       custom sorting
 const sortAndRemovePrimes = (arr: number[]): number[] => {
     const primeNum = (num: number): boolean => {
       if(num <= 1) return false;
@@ -82,6 +133,139 @@ const sortAndRemovePrimes = (arr: number[]): number[] => {
 
     return arr;
 };
-console.log(sortAndRemovePrimes([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]));
+//console.log(sortAndRemovePrimes([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]));
 
 
+
+
+
+//C.	Time complexity
+function hasMajorityElement(arr: number[]): boolean {
+    const counts: { [key: number]: number } = {};
+    const n: number = arr.length;
+
+    // Count occurrences of each element
+    for (let num of arr) {
+        counts[num] = (counts[num] || 0) + 1;
+    }
+
+    // Check if any element occurs more than half of the array size
+    for (let num of arr) {
+        if (counts[num] > n / 2) {
+            return true; 
+        }
+    }
+
+    return false;
+}
+
+// Example usage:
+const arr1: number[] = [3, 1, 3, 4, 4, 5, 3, 5, 3, 3, 3, 6, 3];
+// console.log(hasMajorityElement(arr1)); 
+
+const arr2: number[] = [3, 1, 3, 4, 4];
+// console.log(hasMajorityElement(arr2)); 
+
+
+
+
+
+
+
+
+
+//// Advanced
+
+//the student interface
+interface Student {
+    name: string;
+    age?: number;
+}
+
+//the setStudentAgeApi function
+const setStudentAgeApi = (student: Student, age: number) => {
+    return new Promise<Student>((resolve, reject) => {
+        setTimeout(() => {
+            student.age = age;
+            if (age < 0)
+                reject("Bad Age");
+            else
+                resolve(student);
+        }, 500);
+    });
+};
+
+//the function with a positive age
+const student: Student = { name: "John" };
+const positiveAge = 25;
+setStudentAgeApi(student, positiveAge)
+    .then((student) => {
+        //console.log("Student age set successfully:", student);
+    })
+    .catch((error) => {
+        //console.error("Error:", error);
+    });
+
+//the function with a negative age to trigger the rejection
+const negativeAge = -10;
+setStudentAgeApi(student, negativeAge)
+    .then((student) => {
+        //console.log("Student age set successfully:", student);
+    })
+    .catch((error) => {
+        //console.error("Error:", error);
+    });
+
+
+
+
+
+
+
+    
+interface Family {
+    fatherName: string;
+    motherName: string;
+    childrenNumber: number;
+    totalNumberOfFamilyMembers?: number;
+    }
+    
+    
+const addTotalNumberOfFamilyMembers = async (families: Family[]): Promise<Family[]> => {
+    const updatedFamilies: Family[] = [];
+    
+    for (const family of families) {
+        const { fatherName, motherName, childrenNumber } = family;
+    
+        // Check if the father's name is Yves 
+        if (fatherName.toLowerCase() === 'yves') {
+            throw new Error("Yves is not an allowed dad in 2022");
+            }
+    
+        // Calculate the total number of family members
+        const totalNumberOfFamilyMembers = childrenNumber + 2;
+        const updatedFamily: Family = { ...family, totalNumberOfFamilyMembers };
+        updatedFamilies.push(updatedFamily);
+        }
+    
+        return updatedFamilies;
+    };
+    
+const families: Family[] = [
+        { fatherName: "John", motherName: "Jane", childrenNumber: 2 },
+        // { fatherName: "Yves", motherName: "Alice", childrenNumber: 1 },
+        { fatherName: "Michael", motherName: "Emily", childrenNumber: 3 }
+    ];
+    
+    // Invoke the API function with the families array
+    (async () => {
+        try {
+            const updatedFamilies = await addTotalNumberOfFamilyMembers(families);
+            //console.log(updatedFamilies);
+        } catch (error: any) {
+            //console.error("Error:", error.message);
+        }
+    })();
+
+    
+    
