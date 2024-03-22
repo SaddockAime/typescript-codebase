@@ -14,9 +14,11 @@ const primeNum = (arr) => {
     const primeArr = [];
     for (let i = 0; i < arr.length; i++) {
         let primeNum = true;
+        //removing numbers that are less than 1
         if (arr[i] <= 1) {
             primeNum = false;
         }
+        //condition for prime numbers
         for (let j = 2; j * j <= arr[i]; j++) {
             if (arr[i] % j === 0) {
                 primeNum = false;
@@ -32,18 +34,21 @@ const primeNum = (arr) => {
 console.log(primeNum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]));
 //2.  Palindrome
 const palindrome = (text) => {
+    //putting all texts to lowercase and replacing numbers with empty string
     const cleantext = text.replace(/[^a-z0-9]/g, '').toLowerCase();
+    //checking if the text is palindrome text
     return cleantext === cleantext.split('').reverse().join('');
 };
 //console.log(palindrome("racecar"));
 //console.log(palindrome("hello"));
 //3.   reverse array
 const reverseArr = (arr) => {
-    const reverseArray = [];
+    const reverseArr = [];
+    //reversing the given array
     for (let i = arr.length - 1; i >= 0; i--) {
-        reverseArray.push(arr[i]);
+        reverseArr.push(arr[i]);
     }
-    return reverseArray;
+    return reverseArr;
 };
 ;
 const processIdentities = (identities) => {
@@ -80,6 +85,7 @@ const sortAndRemovePrimes = (arr) => {
     const primeNum = (num) => {
         if (num <= 1)
             return false;
+        //condition for prime numbers 
         for (let j = 2; j * j <= num; j++) {
             if (num % j === 0)
                 return false;
@@ -97,6 +103,7 @@ const sortAndRemovePrimes = (arr) => {
             }
         }
     }
+    //setting the array to start at the end and remove all prime numbers
     for (let i = arr.length - 1; i >= 0; i--) {
         if (primeNum(arr[i]) || specificNumbers.includes(arr[i])) {
             arr.splice(i, 1);
@@ -137,7 +144,7 @@ const setStudentAgeApi = (student, age) => {
         }, 500);
     });
 };
-//the function with a positive age
+// positive age
 const student = { name: "John" };
 const positiveAge = 25;
 setStudentAgeApi(student, positiveAge)
@@ -147,7 +154,7 @@ setStudentAgeApi(student, positiveAge)
     .catch((error) => {
     //console.error("Error:", error);
 });
-//the function with a negative age to trigger the rejection
+// negative age to trigger the rejection
 const negativeAge = -10;
 setStudentAgeApi(student, negativeAge)
     .then((student) => {
