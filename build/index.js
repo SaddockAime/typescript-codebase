@@ -31,16 +31,20 @@ const primeNum = (arr) => {
     }
     return primeArr;
 };
-console.log(primeNum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]));
+// console.log(primeNum([356, 701, 39, 46, 133]));
 //2.  Palindrome
 const palindrome = (text) => {
     //putting all texts to lowercase and replacing numbers with empty string
-    const cleantext = text.replace(/[^a-z0-9]/g, '').toLowerCase();
+    const cleantext = text.toLowerCase().replace(/[^a-z0-9]/g, '');
     //checking if the text is palindrome text
     return cleantext === cleantext.split('').reverse().join('');
 };
 //console.log(palindrome("racecar"));
 //console.log(palindrome("hello"));
+//console.log(palindrome("radar"))
+//console.log(palindrome("level"))
+//console.log(palindrome("Was it a car or a cat I saw?"))
+//console.log(palindrome("Doc, note: I dissent. A fast never prevents a fatness. I diet on cod"))
 //3.   reverse array
 const reverseArr = (arr) => {
     const reverseArr = [];
@@ -50,6 +54,23 @@ const reverseArr = (arr) => {
     }
     return reverseArr;
 };
+//console.log(reverseArr([1,2,3,4,5,6,7,8,9,10]));
+//4.	Inplace Array reversing
+const reverseArrayInPlace = (arr) => {
+    let start = 0;
+    let end = arr.length - 1;
+    while (start < end) {
+        // Swap elements at start and end 
+        const temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        // Move indices inward
+        start++;
+        end--;
+    }
+};
+const array = [1, 2, 3, 4, 5];
+reverseArrayInPlace(array);
 ;
 const processIdentities = (identities) => {
     let details = { females: {}, males: {} };
@@ -79,7 +100,7 @@ const identities = [
     "Patrick wyne, 40, male"
 ];
 const result = processIdentities(identities);
-//console.log(result);
+// console.log(result);
 //B.       custom sorting
 const sortAndRemovePrimes = (arr) => {
     const primeNum = (num) => {
@@ -128,7 +149,6 @@ function hasMajorityElement(arr) {
     }
     return false;
 }
-// Example usage:
 const arr1 = [3, 1, 3, 4, 4, 5, 3, 5, 3, 3, 3, 6, 3];
 // console.log(hasMajorityElement(arr1)); 
 const arr2 = [3, 1, 3, 4, 4];

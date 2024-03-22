@@ -22,8 +22,7 @@ const primeNum = (arr: number[]): number[] => {
     }
     return primeArr;
 }
-
-console.log(primeNum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]));
+// console.log(primeNum([356, 701, 39, 46, 133]));
 
 
 
@@ -32,14 +31,21 @@ console.log(primeNum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
 const palindrome = (text: string): boolean => {
 
     //putting all texts to lowercase and replacing numbers with empty string
-    const cleantext = text.replace(/[^a-z0-9]/g, '').toLowerCase();
+    const cleantext: string = text.toLowerCase().replace(/[^a-z0-9]/g, '');
 
     //checking if the text is palindrome text
     return cleantext === cleantext.split('').reverse().join('');
 }
-
 //console.log(palindrome("racecar"));
 //console.log(palindrome("hello"));
+//console.log(palindrome("radar"))
+//console.log(palindrome("level"))
+//console.log(palindrome("Was it a car or a cat I saw?"))
+//console.log(palindrome("Doc, note: I dissent. A fast never prevents a fatness. I diet on cod"))
+
+
+
+
 
 
 
@@ -54,8 +60,38 @@ const reverseArr = (arr: number[]): number[] => {
 
     return reverseArr;
 }
-
 //console.log(reverseArr([1,2,3,4,5,6,7,8,9,10]));
+
+
+
+
+
+
+//4.	Inplace Array reversing
+const reverseArrayInPlace = (arr: number[]): void => {
+    let start: number = 0;
+    let end: number = arr.length - 1;
+
+    while (start < end) {
+        // Swap elements at start and end 
+        const temp: number = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+
+        // Move indices inward
+        start++;
+        end--;
+    }
+};
+const array: number[] = [1, 2, 3, 4, 5];
+reverseArrayInPlace(array);
+//console.log(array);
+
+
+
+
+
+
 
 
 
@@ -101,9 +137,8 @@ const identities = [
     "Patrick wyne, 10, male",
     "Patrick wyne, 40, male"
 ];
-
 const result = processIdentities(identities);
-//console.log(result);
+// console.log(result);
 
 
 
@@ -119,10 +154,7 @@ const sortAndRemovePrimes = (arr: number[]): number[] => {
       }
       return true;  
     };
-
     const specificNumbers: number[] = [2, 3, 5, 7]; //additional specific numbers to  be removed
-
-
     const n: number = arr.length;
     for (let i: number = 0; i < n - 1; i++) {
         for (let j: number = 0; j < n - i - 1; j++) {
@@ -133,17 +165,18 @@ const sortAndRemovePrimes = (arr: number[]): number[] => {
             }
         }
     }
-
     //setting the array to start at the end and remove all prime numbers
     for (let i: number = arr.length - 1; i >= 0; i--) {
         if (primeNum(arr[i]) || specificNumbers.includes(arr[i])) {
             arr.splice(i, 1);
         }
     }
-
     return arr;
 };
 //console.log(sortAndRemovePrimes([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]));
+
+
+
 
 
 
@@ -153,26 +186,20 @@ const sortAndRemovePrimes = (arr: number[]): number[] => {
 function hasMajorityElement(arr: number[]): boolean {
     const counts: { [key: number]: number } = {};
     const n: number = arr.length;
-
     // Count occurrences of each element
     for (let num of arr) {
         counts[num] = (counts[num] || 0) + 1;
     }
-
     // Check if any element occurs more than half of the array size
     for (let num of arr) {
         if (counts[num] > n / 2) {
             return true; 
         }
     }
-
     return false;
 }
-
-// Example usage:
 const arr1: number[] = [3, 1, 3, 4, 4, 5, 3, 5, 3, 3, 3, 6, 3];
 // console.log(hasMajorityElement(arr1)); 
-
 const arr2: number[] = [3, 1, 3, 4, 4];
 // console.log(hasMajorityElement(arr2)); 
 
@@ -191,7 +218,6 @@ interface Student {
     name: string;
     age?: number;
 }
-
 //the setStudentAgeApi function
 const setStudentAgeApi = (student: Student, age: number) => {
     return new Promise<Student>((resolve, reject) => {
@@ -204,7 +230,6 @@ const setStudentAgeApi = (student: Student, age: number) => {
         }, 500);
     });
 };
-
 // positive age
 const student: Student = { name: "John" };
 const positiveAge = 25;
@@ -215,7 +240,6 @@ setStudentAgeApi(student, positiveAge)
     .catch((error) => {
         //console.error("Error:", error);
     });
-
 // negative age to trigger the rejection
 const negativeAge = -10;
 setStudentAgeApi(student, negativeAge)
@@ -233,40 +257,33 @@ setStudentAgeApi(student, negativeAge)
 
 
     
+//Practicing    
 interface Family {
     fatherName: string;
     motherName: string;
     childrenNumber: number;
     totalNumberOfFamilyMembers?: number;
     }
-    
-    
 const addTotalNumberOfFamilyMembers = async (families: Family[]): Promise<Family[]> => {
     const updatedFamilies: Family[] = [];
-    
     for (const family of families) {
         const { fatherName, motherName, childrenNumber } = family;
-    
         // Check if the father's name is Yves 
         if (fatherName.toLowerCase() === 'yves') {
             throw new Error("Yves is not an allowed dad in 2022");
             }
-    
         // Calculate the total number of family members
         const totalNumberOfFamilyMembers = childrenNumber + 2;
         const updatedFamily: Family = { ...family, totalNumberOfFamilyMembers };
         updatedFamilies.push(updatedFamily);
         }
-    
         return updatedFamilies;
     };
-    
 const families: Family[] = [
         { fatherName: "John", motherName: "Jane", childrenNumber: 2 },
         // { fatherName: "Yves", motherName: "Alice", childrenNumber: 1 },
         { fatherName: "Michael", motherName: "Emily", childrenNumber: 3 }
     ];
-    
     // Invoke the API function with the families array
     (async () => {
         try {
