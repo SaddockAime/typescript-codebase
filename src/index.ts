@@ -256,7 +256,7 @@ setStudentAgeApi(student, negativeAge)
 
 
 
-    
+
 //Practicing    
 interface Family {
     fatherName: string;
