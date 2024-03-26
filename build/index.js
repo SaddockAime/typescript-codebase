@@ -40,11 +40,11 @@ const palindrome = (text) => {
     return cleantext === cleantext.split('').reverse().join('');
 };
 //console.log(palindrome("racecar"));
-//console.log(palindrome("hello"));
+// console.log(palindrome("hello"));
 //console.log(palindrome("radar"))
 //console.log(palindrome("level"))
-//console.log(palindrome("Was it a car or a cat I saw?"))
-//console.log(palindrome("Doc, note: I dissent. A fast never prevents a fatness. I diet on cod"))
+// console.log(palindrome("Was it a car or a cat I saw?"))
+// console.log(palindrome("Doc, note: I dissent. A fast never prevents a fatness. I diet on cod"))
 //3.   reverse array
 const reverseArr = (arr) => {
     const reverseArr = [];
@@ -54,7 +54,7 @@ const reverseArr = (arr) => {
     }
     return reverseArr;
 };
-//console.log(reverseArr([1,2,3,4,5,6,7,8,9,10]));
+// console.log(reverseArr([1,2,3,4,5]));
 //4.	Inplace Array reversing
 const reverseArrayInPlace = (arr) => {
     let start = 0;
@@ -153,7 +153,7 @@ const arr1 = [3, 1, 3, 4, 4, 5, 3, 5, 3, 3, 3, 6, 3];
 // console.log(hasMajorityElement(arr1)); 
 const arr2 = [3, 1, 3, 4, 4];
 //the setStudentAgeApi function
-const setStudentAgeApi = (student, age) => {
+let setStudentAgeApi = (student, age) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             student.age = age;
@@ -164,24 +164,14 @@ const setStudentAgeApi = (student, age) => {
         }, 500);
     });
 };
-// positive age
-const student = { name: "John" };
-const positiveAge = 25;
-setStudentAgeApi(student, positiveAge)
+//age
+let student = { name: "John" };
+setStudentAgeApi(student, 20)
     .then((student) => {
-    //console.log("Student age set successfully:", student);
+    //console.log(student);
 })
     .catch((error) => {
-    //console.error("Error:", error);
-});
-// negative age to trigger the rejection
-const negativeAge = -10;
-setStudentAgeApi(student, negativeAge)
-    .then((student) => {
-    //console.log("Student age set successfully:", student);
-})
-    .catch((error) => {
-    //console.error("Error:", error);
+    //console.error(error);
 });
 const addTotalNumberOfFamilyMembers = (families) => __awaiter(void 0, void 0, void 0, function* () {
     const updatedFamilies = [];

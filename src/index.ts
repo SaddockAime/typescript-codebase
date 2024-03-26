@@ -37,11 +37,11 @@ const palindrome = (text: string): boolean => {
     return cleantext === cleantext.split('').reverse().join('');
 }
 //console.log(palindrome("racecar"));
-//console.log(palindrome("hello"));
+// console.log(palindrome("hello"));
 //console.log(palindrome("radar"))
 //console.log(palindrome("level"))
-//console.log(palindrome("Was it a car or a cat I saw?"))
-//console.log(palindrome("Doc, note: I dissent. A fast never prevents a fatness. I diet on cod"))
+// console.log(palindrome("Was it a car or a cat I saw?"))
+// console.log(palindrome("Doc, note: I dissent. A fast never prevents a fatness. I diet on cod"))
 
 
 
@@ -60,7 +60,7 @@ const reverseArr = (arr: number[]): number[] => {
 
     return reverseArr;
 }
-//console.log(reverseArr([1,2,3,4,5,6,7,8,9,10]));
+// console.log(reverseArr([1,2,3,4,5]));
 
 
 
@@ -85,7 +85,7 @@ const reverseArrayInPlace = (arr: number[]): void => {
 };
 const array: number[] = [1, 2, 3, 4, 5];
 reverseArrayInPlace(array);
-//console.log(array);
+// console.log(array);
 
 
 
@@ -219,7 +219,7 @@ interface Student {
     age?: number;
 }
 //the setStudentAgeApi function
-const setStudentAgeApi = (student: Student, age: number) => {
+let setStudentAgeApi = (student: Student, age: number) => {
     return new Promise<Student>((resolve, reject) => {
         setTimeout(() => {
             student.age = age;
@@ -230,24 +230,14 @@ const setStudentAgeApi = (student: Student, age: number) => {
         }, 500);
     });
 };
-// positive age
-const student: Student = { name: "John" };
-const positiveAge = 25;
-setStudentAgeApi(student, positiveAge)
+//age
+let student: Student = { name: "John" };
+setStudentAgeApi(student, 20)
     .then((student) => {
-        //console.log("Student age set successfully:", student);
+        //console.log(student);
     })
     .catch((error) => {
-        //console.error("Error:", error);
-    });
-// negative age to trigger the rejection
-const negativeAge = -10;
-setStudentAgeApi(student, negativeAge)
-    .then((student) => {
-        //console.log("Student age set successfully:", student);
-    })
-    .catch((error) => {
-        //console.error("Error:", error);
+        //console.error(error);
     });
 
 
