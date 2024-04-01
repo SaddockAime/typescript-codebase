@@ -10,7 +10,7 @@
     "start": "concurrently npm:start:*"
   },
   "keywords": [],
-  "author": "",
+  "author": "Saddock",
   "license": "ISC",
   "dependencies": {
     "concurrently": "^8.2.2",
